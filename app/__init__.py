@@ -1,5 +1,6 @@
-import subprocess
 import re
+import subprocess
+
 from flask import Flask
 from flask import Markup
 from flask import render_template
@@ -28,4 +29,4 @@ def response(command):
     except:
         title = "Server Details"
         ip = "/"
-    return render_template('main.html', body=Markup(output),ip=ip)
+    return render_template('main.html', body=Markup(output), ip=ip, title=title)

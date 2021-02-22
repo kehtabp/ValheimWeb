@@ -1,20 +1,26 @@
 import subprocess
+import re
 from flask import Flask
-from flask import render_template
 from flask import Markup
+from flask import render_template
 
 app = Flask(__name__)
+
+
 @app.route('/')
 def index():
-    check_output = subprocess.check_output("/home/vhserver/vhserver dt | aha --black --no-header", shell=True).decode("utf-8")
-    output = str(check_output).replace("\\n", "<br/>")
-    html_detail_output = Markup(output)
+    command = "/home/vhserver/vhserver dt | aha --black --no-header"
+    return response(command)
 
-    template = render_template('main.html', body=html_detail_output)
-    return template
 
 @app.route('/start')
 def start():
-    check_output = subprocess.check_output("/home/vhserver/vhserver st | aha --black --no-header", shell=True).decode("utf-8")
-    return render_template('main.html', body = Markup(check_output))
+    command = "/home/vhserver/vhserver st | aha --black --no-header"
+    return response(command)
 
+
+def response(command):
+    output = subprocess.check_output("%s" % command, shell=True).decode("utf-8")
+    pattern = "Internet IP:\s+</span>(\d+\.\d+\.\d+\.\d+:\d+)\\r"
+    ip = re.findall(pattern, output)[0]
+    return render_template('main.html', body=Markup(output),ip=ip)

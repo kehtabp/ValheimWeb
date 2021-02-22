@@ -17,6 +17,11 @@ def index():
 @app.route('/start')
 def start():
     command = "/home/vhserver/vhserver st | aha --black --no-header"
+    return response(command)\
+
+@app.route('/restart')
+def start():
+    command = "/home/vhserver/vhserver r | aha --black --no-header"
     return response(command)
 
 

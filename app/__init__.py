@@ -20,7 +20,7 @@ def start():
     return response(command)\
 
 @app.route('/restart')
-def start():
+def restart():
     command = "/home/vhserver/vhserver r | aha --black --no-header"
     return response(command)
 

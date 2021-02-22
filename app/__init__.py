@@ -30,7 +30,7 @@ def response(command):
     pattern = "Internet IP:\s+</span>(\d+\.\d+\.\d+\.\d+:\d+)"
     try:
         title = "Connect"
-        ip = f"steam://connect/{re.findall(pattern, output)[0]}/fghj456"
+        ip = f"steam://steam://run/892970//+connect {re.findall(pattern, output)[0]}"
     except:
         title = "Server Details"
         ip = "/"

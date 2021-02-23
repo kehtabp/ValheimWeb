@@ -24,6 +24,11 @@ def restart():
     command = "/home/vhserver/vhserver r | aha --black --no-header"
     return response(command)
 
+@app.route('/stop')
+def restart():
+    command = "/home/vhserver/vhserver sp | aha --black --no-header"
+    return response(command)
+
 
 def response(command):
     output = subprocess.check_output("%s" % command, shell=True).decode("utf-8")

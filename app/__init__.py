@@ -27,7 +27,7 @@ def restart():
 
 
 @app.route('/stop')
-def restart():
+def stop():
     command = "/home/vhserver/vhserver sp | aha --black --no-header"
     return response(command)
 
